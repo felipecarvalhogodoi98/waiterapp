@@ -15,7 +15,7 @@ Application for customers and employees of a restaurant.
 ### API
 CRUD Categories, Orders and Products
 
-Insominia <a href='https://github.com/felipecarvalhogodoi98/waiterapp/tree/master/api/src/app/WAITERAPP_2022-11-15'>WAITERAPP</a>
+Insominia <a href='https://github.com/felipecarvalhogodoi98/waiterapp/blob/master/api/WAITERAPP_2022-11-15'>WAITERAPP</a>
 
 ### APP
 to develop
