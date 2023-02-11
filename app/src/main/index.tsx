@@ -1,6 +1,8 @@
 import { Categories } from "../components/Categories";
 import { Header } from "../components/Header";
 import { Menu } from "../components/Menu";
+import { Button } from "../components/Button";
+import { TableModal } from "../components/TableModal";
 
 import {
   Container,
@@ -9,8 +11,15 @@ import {
   Footer,
   FooterContainer,
 } from "./styles";
+import { useState } from "react";
 
 export function Main() {
+  const [isTableModalVisible, setIsTableModalVisible] = useState(false);
+  const [selectedTable, setSelectedTable] = useState("");
+  function handleSaveTable(table: string) {
+    setSelectedTable(table);
+  }
+
   return (
     <>
       <Container>
@@ -25,8 +34,20 @@ export function Main() {
         </MenuContainer>
       </Container>
 
+      <TableModal
+        onClose={() => setIsTableModalVisible(false)}
+        onSave={handleSaveTable}
+        visible={isTableModalVisible}
+      ></TableModal>
+
       <Footer>
-        <FooterContainer></FooterContainer>
+        <FooterContainer>
+          {!selectedTable && (
+            <Button onPress={() => setIsTableModalVisible(true)}>
+              Novo pedido
+            </Button>
+          )}
+        </FooterContainer>
       </Footer>
     </>
   );
