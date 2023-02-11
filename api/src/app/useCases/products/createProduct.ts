@@ -5,14 +5,14 @@ import { Product } from "../../models/Product";
 export async function createProduct(req: Request, res: Response) {
   try {
     const imagePath = req.file?.filename;
-    const { name, description, price, category, igredients } = req.body;
-
+    const { name, description, price, category, ingredients } = req.body;
+    console.log(1 ?? "Ok");
     const product = await Product.create({
       name,
       description,
       price: Number(price),
       category,
-      igredients: igredients ?? JSON.parse(igredients),
+      ingredients: ingredients ? JSON.parse(ingredients) : [],
       imagePath,
     });
 
