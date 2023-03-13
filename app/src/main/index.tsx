@@ -1,29 +1,28 @@
 import { Categories } from "../components/Categories";
 import { Header } from "../components/Header";
 import { Menu } from "../components/Menu";
-import { Button } from "../components/Button";
 import { TableModal } from "../components/TableModal";
 
-import {
-  Container,
-  CategoriesContainer,
-  MenuContainer,
-  Footer,
-  FooterContainer,
-} from "./styles";
+import { Container, CategoriesContainer, MenuContainer } from "./styles";
 import { useState } from "react";
+import { Footer } from "../components/Footer";
 
 export function Main() {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
   const [selectedTable, setSelectedTable] = useState("");
+
   function handleSaveTable(table: string) {
     setSelectedTable(table);
+  }
+
+  function handleCancelOrder() {
+    setSelectedTable("");
   }
 
   return (
     <>
       <Container>
-        <Header />
+        <Header selectedTable={selectedTable} cancelOrder={handleCancelOrder} />
 
         <CategoriesContainer>
           <Categories />
@@ -40,15 +39,11 @@ export function Main() {
         visible={isTableModalVisible}
       ></TableModal>
 
-      <Footer>
-        <FooterContainer>
-          {!selectedTable && (
-            <Button onPress={() => setIsTableModalVisible(true)}>
-              Novo pedido
-            </Button>
-          )}
-        </FooterContainer>
-      </Footer>
+      <Footer
+        buttonLabel="Novo pedido"
+        buttonIsVisible={!selectedTable}
+        onPress={() => setIsTableModalVisible(true)}
+      />
     </>
   );
 }
