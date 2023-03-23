@@ -29,10 +29,10 @@ export const products = [
     ],
   },
   {
-    _id: "6372e276a381106c0f854cb3",
+    _id: "64105bd148b4fecb976ee89c",
     name: "Coca cola",
     description: "Coca cola lata geladinha topzera",
-    imagePath: "1676103820751-pizza-quatro-queijos-comitc3aa-umami.webp",
+    imagePath: "1678793681145-coca-cola.png",
     price: 7,
     ingredients: [],
   },

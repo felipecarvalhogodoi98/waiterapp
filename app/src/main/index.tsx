@@ -6,10 +6,22 @@ import { TableModal } from "../components/TableModal";
 import { Container, CategoriesContainer, MenuContainer } from "./styles";
 import { useState } from "react";
 import { Footer } from "../components/Footer";
+import { CartItem } from "../Types/cartItem";
+import { products } from "../mocks/products";
 
 export function Main() {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
-  const [selectedTable, setSelectedTable] = useState("");
+  const [selectedTable, setSelectedTable] = useState("1");
+  const [cartItems, setCartItems] = useState<CartItem[]>([
+    {
+      quantity: 1,
+      product: products[0],
+    },
+    {
+      quantity: 2,
+      product: products[1],
+    },
+  ]);
 
   function handleSaveTable(table: string) {
     setSelectedTable(table);
@@ -29,7 +41,7 @@ export function Main() {
         </CategoriesContainer>
 
         <MenuContainer>
-          <Menu></Menu>
+          <Menu />
         </MenuContainer>
       </Container>
 
@@ -40,8 +52,9 @@ export function Main() {
       ></TableModal>
 
       <Footer
+        cartItems={cartItems}
         buttonLabel="Novo pedido"
-        buttonIsVisible={!selectedTable}
+        hasTable={!!selectedTable}
         onPress={() => setIsTableModalVisible(true)}
       />
     </>
