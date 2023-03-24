@@ -79,7 +79,10 @@ export function ProductModal({
       </ModalBody>
       <Footer
         buttonLabel="Adicionar ao pedido"
-        onPress={() => addToCart(product)}
+        onPress={() => {
+          addToCart(product);
+          onClose();
+        }}
         price={product.price}
       />
     </Modal>

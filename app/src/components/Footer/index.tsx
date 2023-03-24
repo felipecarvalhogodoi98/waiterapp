@@ -3,6 +3,7 @@ import { Product } from "../../Types/product";
 import { formatPrice } from "../../Utils/FormatPrice";
 import { Button } from "../Button";
 import { Cart } from "../Cart";
+import { FooterMenu } from "../FooterMenu";
 import { Text } from "../Text";
 import {
   Footer as FooterView,
@@ -34,7 +35,7 @@ export function Footer({
     <FooterView>
       <FooterContainer>
         {!hasTable ? (
-          <Text color="#666">Footer Menu</Text>
+          <FooterMenu />
         ) : (
           <>
             {addToCart && removeToCart && (

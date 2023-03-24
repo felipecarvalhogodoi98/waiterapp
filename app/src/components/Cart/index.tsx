@@ -10,6 +10,7 @@ import {
   Image,
   ProductItemDetails,
   QuantityContainer,
+  CartContainer,
 } from "./styles";
 import { formatPrice } from "../../Utils/FormatPrice";
 import { PlusCircle } from "../Icons/PlusCircle";
@@ -24,47 +25,51 @@ interface CartProps {
 
 export function Cart({ cartItems, addToCart, removeToCart }: CartProps) {
   return (
-    <FlatList
-      contentContainerStyle={{}}
-      data={cartItems}
-      keyExtractor={(item) => item.product._id}
-      showsVerticalScrollIndicator={false}
-      renderItem={({ item: cartItem }) => (
-        <Item>
-          <ProductItem>
-            <Image
-              source={{
-                uri: `http://192.168.0.117:3001/uploads/${cartItem.product.imagePath}`,
-              }}
-            />
-            <QuantityContainer>
-              <Text size={14} color="#666">
-                {cartItem.quantity}x
-              </Text>
-            </QuantityContainer>
-            <ProductItemDetails>
-              <Text size={14} weight="600">
-                {cartItem.product.name}
-              </Text>
-              <Text size={14} color="#666">
-                {formatPrice(cartItem.product.price)}
-              </Text>
-            </ProductItemDetails>
-          </ProductItem>
+    <CartContainer>
+      <FlatList
+        data={cartItems}
+        keyExtractor={(item) => item.product._id}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          marginBottom: 20,
+        }}
+        renderItem={({ item: cartItem }) => (
+          <Item>
+            <ProductItem>
+              <Image
+                source={{
+                  uri: `http://192.168.0.117:3001/uploads/${cartItem.product.imagePath}`,
+                }}
+              />
+              <QuantityContainer>
+                <Text size={14} color="#666">
+                  {cartItem.quantity}x
+                </Text>
+              </QuantityContainer>
+              <ProductItemDetails>
+                <Text size={14} weight="600">
+                  {cartItem.product.name}
+                </Text>
+                <Text size={14} color="#666">
+                  {formatPrice(cartItem.product.price)}
+                </Text>
+              </ProductItemDetails>
+            </ProductItem>
 
-          <Actions>
-            <TouchableOpacity
-              style={{ marginRight: 16 }}
-              onPress={() => addToCart(cartItem.product)}
-            >
-              <PlusCircle />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => removeToCart(cartItem.product)}>
-              <MinusCircle />
-            </TouchableOpacity>
-          </Actions>
-        </Item>
-      )}
-    />
+            <Actions>
+              <TouchableOpacity
+                style={{ marginRight: 24 }}
+                onPress={() => addToCart(cartItem.product)}
+              >
+                <PlusCircle />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => removeToCart(cartItem.product)}>
+                <MinusCircle />
+              </TouchableOpacity>
+            </Actions>
+          </Item>
+        )}
+      />
+    </CartContainer>
   );
 }

@@ -1,5 +1,11 @@
 import styled from "styled-components/native";
 
+//altura flexivel com no maximo 150px
+export const CartContainer = styled.View`
+  width: 100%;
+  max-height: 150px;
+`;
+
 export const Item = styled.View`
   padding: 8px 0;
   flex-direction: row;

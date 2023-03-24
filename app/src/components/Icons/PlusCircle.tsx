@@ -1,4 +1,4 @@
-import { SvgXml } from 'react-native-svg';
+import { SvgXml } from "react-native-svg";
 
 export function PlusCircle() {
   const markup = `<svg width="22" height="24" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
