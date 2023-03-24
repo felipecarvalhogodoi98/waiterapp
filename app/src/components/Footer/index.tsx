@@ -1,4 +1,5 @@
 import { CartItem } from "../../Types/cartItem";
+import { Product } from "../../Types/product";
 import { formatPrice } from "../../Utils/FormatPrice";
 import { Button } from "../Button";
 import { Cart } from "../Cart";
@@ -15,6 +16,9 @@ interface FooterProps {
   onPress: () => void;
   hasTable?: boolean;
   cartItems?: CartItem[];
+  price?: number;
+  removeToCart?: (product: Product) => void;
+  addToCart?: (product: Product) => void;
 }
 
 export function Footer({
@@ -22,9 +26,10 @@ export function Footer({
   hasTable = true,
   buttonLabel,
   cartItems = [],
+  price,
+  removeToCart,
+  addToCart,
 }: FooterProps) {
-  const price = cartItems.reduce((acc, item) => acc + item.product.price, 0);
-
   return (
     <FooterView>
       <FooterContainer>
@@ -32,7 +37,13 @@ export function Footer({
           <Text color="#666">Footer Menu</Text>
         ) : (
           <>
-            <Cart cartItems={cartItems} />
+            {addToCart && removeToCart && (
+              <Cart
+                cartItems={cartItems}
+                removeToCart={removeToCart}
+                addToCart={addToCart}
+              />
+            )}
             <FooterInfo>
               {price != undefined && (
                 <Price>

@@ -7,7 +7,7 @@ import { ModalBody, Overlay, ModalForm, ModalHeader, Input } from "./styles";
 
 interface TableModalProps {
   visible: boolean;
-  onClose: () => void;
+  onClose: (resetCart?: boolean) => void;
   onSave: (table: string) => void;
 }
 
@@ -26,7 +26,7 @@ export function TableModal({ visible, onClose, onSave }: TableModalProps) {
         <ModalBody>
           <ModalHeader>
             <Text weight="600">Informe a mesa</Text>
-            <TouchableOpacity onPress={onClose}>
+            <TouchableOpacity onPress={() => onClose(true)}>
               <Close color="#666" />
             </TouchableOpacity>
           </ModalHeader>

@@ -14,12 +14,15 @@ import {
 import { formatPrice } from "../../Utils/FormatPrice";
 import { PlusCircle } from "../Icons/PlusCircle";
 import { MinusCircle } from "../Icons/MinusCircle";
+import { Product } from "../../Types/product";
 
 interface CartProps {
   cartItems: CartItem[];
+  removeToCart: (product: Product) => void;
+  addToCart: (product: Product) => void;
 }
 
-export function Cart({ cartItems }: CartProps) {
+export function Cart({ cartItems, addToCart, removeToCart }: CartProps) {
   return (
     <FlatList
       contentContainerStyle={{}}
@@ -50,10 +53,13 @@ export function Cart({ cartItems }: CartProps) {
           </ProductItem>
 
           <Actions>
-            <TouchableOpacity style={{ marginRight: 16 }}>
+            <TouchableOpacity
+              style={{ marginRight: 16 }}
+              onPress={() => addToCart(cartItem.product)}
+            >
               <PlusCircle />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => removeToCart(cartItem.product)}>
               <MinusCircle />
             </TouchableOpacity>
           </Actions>

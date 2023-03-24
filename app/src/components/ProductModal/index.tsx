@@ -16,9 +16,15 @@ interface ProductModapProps {
   visible: boolean;
   onClose: () => void;
   product: Product | null;
+  addToCart: (product: Product) => void;
 }
 
-export function ProductModal({ visible, onClose, product }: ProductModapProps) {
+export function ProductModal({
+  visible,
+  onClose,
+  product,
+  addToCart,
+}: ProductModapProps) {
   if (!product) return null;
 
   return (
@@ -73,7 +79,7 @@ export function ProductModal({ visible, onClose, product }: ProductModapProps) {
       </ModalBody>
       <Footer
         buttonLabel="Adicionar ao pedido"
-        onPress={() => console.log("ok")}
+        onPress={() => addToCart(product)}
         price={product.price}
       />
     </Modal>
